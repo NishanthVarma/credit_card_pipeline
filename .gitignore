@@ -1,0 +1,10 @@
+.venv/
+airflow/config/
+airflow/logs/
+airflow/.env
+**/__pycache__/
+cfg/config.py
+cfg/*.csv
+landing/*.csv
+source/*.csv
+*.ipynb_checkpoints/
