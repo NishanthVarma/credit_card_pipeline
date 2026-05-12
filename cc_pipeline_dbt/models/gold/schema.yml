@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: dim_card
+    columns:
+      - name: cc_num
+        tests:
+          - not_null
+          - unique
+      - name: card_provider
+        tests:
+          - not_null
+      - name: expiration_date
+        tests:
+          - not_null
+      - name: issue_date
+        tests:
+          - not_null
+      - name: credit_limit
+        tests:
+          - not_null
+      - name: IS_TOP_CARD
+        tests:
+          - not_null
+
+  - name: dim_customer
+    columns:
+      - name: cust_uuid
+        tests:
+          - not_null
+          - unique
+      - name: first
+        tests:
+          - not_null
+      - name: last
+        tests:
+          - not_null
+      - name: dob
+        tests:
+          - not_null
+      - name: age
+        tests:
+          - not_null
+
+  - name: dim_merchant
+    columns:
+      - name: merch_uuid
+        tests:
+          - not_null
+          - unique
+      - name: merchant
+        tests:
+          - not_null
+
+  - name: fact_transactions
+    columns:
+      - name: trans_num
+        tests:
+          - not_null
+          - unique
+      - name: merch_uuid
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_merchant')
+              field: merch_uuid
+      - name: cust_uuid
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: cust_uuid
+      - name: amt
+        tests:
+          - not_null
+      - name: is_fraud
+        tests:
+          - not_null
+      - name: first
+        tests:
+          - not_null
+      - name: last
+        tests:
+          - not_null
+      - name: merchant
+        tests:
+          - not_null
+      - name: card_provider
+        tests:
+          - not_null
+      - name: credit_limit
+        tests:
+          - not_null

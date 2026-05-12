@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: cc_pipeline_staging
+    schema: raw
+    tables:
+      - name: slv_dim_card
+      - name: slv_dim_customer
+      - name: slv_dim_merchant
+      - name: slv_fact_transactions
