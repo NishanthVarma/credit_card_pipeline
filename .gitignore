@@ -8,3 +8,4 @@ cfg/*.csv
 landing/*.csv
 source/*.csv
 *.ipynb_checkpoints/
+logs/

@@ -27,7 +27,11 @@ def my_dag():
         subprocess.run(["python", "/opt/airflow/project/silver/slv_dims.py"], check=True)
         subprocess.run(["python", "/opt/airflow/project/silver/slv_fact.py"], check=True)
     
+    @task.bash
+    def dbt():
+        return "cd /opt/airflow/project/cc_pipeline_dbt && dbt build --profiles-dir /opt/airflow/project/cc_pipeline_dbt"
 
-    silver() << bronze()
+
+    dbt() << silver() << bronze()
 
 my_dag()
